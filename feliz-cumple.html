@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Cumpleaños</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --rose:  #c0445a;
+      --blush: #f2b5c0;
+      --cream: #fdf6f0;
+      --gold:  #c9973a;
+      --dark:  #1a0a10;
+      --mid:   #5c2535;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .35;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 60px 24px;
+      position: relative; text-align: center;
+      background:
+        radial-gradient(ellipse at 20% 30%, #f9d4dc55 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, #f7c8d055 0%, transparent 55%),
+        var(--cream);
+    }
+    .petal-ring {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(520px, 90vw); height: min(520px, 90vw);
+      border-radius: 50%; border: 1px dashed #d48a9a55;
+      animation: spin 40s linear infinite; pointer-events: none;
+    }
+    .petal-ring::before {
+      content: '🌸 🌹 🌸 🌹 🌸 🌹 🌸 🌹';
+      position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px; letter-spacing: 32px; white-space: nowrap;
+    }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    .eyebrow {
+      font-weight: 300; font-size: .75rem; letter-spacing: .35em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 18px; animation: fadeUp .8s ease both;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 1.1; color: var(--mid);
+      animation: fadeUp .9s .1s ease both;
+    }
+    h1 em { font-style: italic; color: var(--rose); }
+    .sub {
+      margin-top: 14px; font-size: clamp(.95rem, 2vw, 1.1rem);
+      color: #8a4a5a; letter-spacing: .04em;
+      animation: fadeUp .9s .2s ease both;
+    }
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 32px auto; animation: fadeUp .9s .3s ease both;
+    }
+    .letter {
+      max-width: 620px; width: 100%;
+      background: #fff; border-radius: 4px;
+      padding: 44px 48px;
+      box-shadow: 0 2px 40px #c0445a18, 0 1px 8px #00000008;
+      position: relative; animation: fadeUp 1s .4s ease both; text-align: left;
+    }
+    .letter::before {
+      content: '\201C'; font-family: 'Playfair Display', serif;
+      font-size: 9rem; color: var(--blush);
+      position: absolute; top: -20px; left: 20px;
+      line-height: 1; pointer-events: none;
+    }
+    .letter p { font-size: 1.05rem; line-height: 1.9; color: #3a1520; margin-bottom: 1.2rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter .firma { margin-top: 28px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--rose); }
+    .letter .highlight {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--rose);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .emoji-section {
+      margin-top: 52px;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+      animation: fadeUp 1s .6s ease both;
+    }
+    .btn-love {
+      background: var(--rose); color: #fff; border: none;
+      border-radius: 50px; padding: 16px 40px;
+      font-family: 'Lato', sans-serif; font-size: 1rem; letter-spacing: .05em;
+      cursor: pointer; box-shadow: 0 4px 24px #c0445a40;
+      transition: transform .15s, box-shadow .15s, background .15s;
+    }
+    .btn-love:hover { background: var(--mid); transform: translateY(-2px); box-shadow: 0 8px 32px #c0445a55; }
+    .btn-love:active { transform: scale(.97); }
+    .emoji-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 100; }
+    .float-emoji { position: absolute; font-size: 2rem; animation: floatUp 3.5s ease-out forwards; }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+      80%  { opacity: 1; }
+      100% { transform: translateY(-80vh) scale(1.4) rotate(20deg); opacity: 0; }
+    }
+    .recs {
+      margin-top: 72px; max-width: 680px; width: 100%;
+      animation: fadeUp 1s .8s ease both; padding-bottom: 80px;
+    }
+    .recs h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.6rem;
+      color: var(--mid); text-align: center; margin-bottom: 8px;
+    }
+    .recs .recs-sub {
+      text-align: center; font-size: .85rem; color: #a0606e;
+      letter-spacing: .04em; margin-bottom: 40px;
+    }
+    .rec-section-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.05rem; color: var(--rose);
+      text-align: center; margin: 48px 0 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .rec-section-title::before, .rec-section-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blush), transparent);
+    }
+    .rec-list { display: flex; flex-direction: column; gap: 40px; }
+    .rec-item {
+      background: #fff; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 2px 24px #c0445a14;
+      border-top: 3px solid var(--blush);
+      transition: border-top-color .25s, transform .25s, box-shadow .25s;
+    }
+    .rec-item:hover { border-top-color: var(--rose); transform: translateY(-3px); box-shadow: 0 10px 40px #c0445a22; }
+    .rec-item iframe { display: block; width: 100%; }
+    .rec-item .rec-msg { padding: 22px 28px 26px; border-top: 1px solid #f5e8eb; }
+    .rec-item .rec-artist { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--rose); margin-bottom: 8px; }
+    .rec-item .rec-dedication {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.02rem; color: var(--mid); line-height: 1.78;
+    }
+  </style>
+</head>
+<body>
+
+<div class="emoji-canvas" id="canvas"></div>
+
+<div class="hero">
+  <div class="petal-ring"></div>
+
+  <p class="eyebrow">Para ti, desde el día que te vi en iNBest</p>
+  <h1>Feliz<br/><em>Cumpleaños</em></h1>
+  <p class="sub">No fue coincidencia. Fue que te vi y ya no pude hacer como si nada.</p>
+  <div class="divider"></div>
+
+  <div class="letter">
+    <p>
+      La verdad es que desde que te vi en iNBest ya sabía que iba a buscarte,
+      <span class="highlight">mi vida</span>. No fue algo que me propuse con calma — fue más instintivo que eso.
+      Te vi y pensé "quiero conocerla". Así, sin más. Y eso no me ha cambiado nada desde entonces.
+    </p>
+    <p>
+      Hubo un momento después, ya que te conocía un poco más, en el que me dijiste
+      <span class="highlight">"cariño"</span> por primera vez. Y te juro que fue de esas cosas que
+      no te esperas y te pegan fuerte. No sé si tú le diste importancia, pero yo me quedé
+      con esa palabra un buen rato. Me gustó mucho cómo sonó viniendo de ti.
+      Fue parecido a cuando te vi llegar aquella vez — algo que en el momento parece normal
+      pero que por alguna razón lo recordás para siempre.
+    </p>
+    <p>
+      Hoy es tu cumpleaños, <span class="highlight">mi reina hermosa</span>, y no quería dejarlo pasar
+      sin decirte algo. Ya sé que sabes lo que siento, te lo he dicho y no me arrepiento.
+      Pero hoy quería que lo sintieras diferente, no como algo que te digo al vuelo
+      sino como algo que me tomé el tiempo de armar para vos.
+    </p>
+    <p>
+      Armé esta página pensando en ti, <span class="highlight">mi niña chula</span>. Cada canción
+      la elegí con cuidado porque cada una dice algo que yo siento pero a veces
+      no encuentro bien cómo decirlo. Ojalá las escuches y en alguna te acuerdes de mí.
+    </p>
+    <p>
+      Que la pases muy bien hoy, <span class="highlight">cariño</span>. Te lo mereces.
+      Y ojalá pronto me des la oportunidad de festejar más cumpleaños juntos.
+    </p>
+    <p class="firma">Con todo lo que ya sabés que siento,<br/>El que te vio llegar y no se quiso ir. 🌹</p>
+  </div>
+
+  <div class="emoji-section">
+    <button class="btn-love" onclick="spawnEmojis()">
+      Toca aquí, que tengo mucho amor atorado 💘
+    </button>
+  </div>
+
+  <div class="recs">
+    <h2>Canciones para ti</h2>
+    <p class="recs-sub">Cada una con su por qué</p>
+
+    <div class="rec-section-title">Corridos que te dedico</div>
+    <div class="rec-list">
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/1CpICQpUz3ZrHcJs84oAbH?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Gabito Ballesteros ft. Carín León</div>
+          <div class="rec-dedication">Esta la puse porque habla de alguien que llegó a tu vida y sin hacer gran cosa te cambió algo por dentro. Y eso es literalmente lo que me pasó contigo. Te vi, te conocí, y ya nada fue igual. No lo digo para sonar dramático — es que así fue.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/3wtZAUizB7ReUKVuVsKWT7?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Gabito Ballesteros ft. Natanael Cano</div>
+          <div class="rec-dedication">Esta va porque habla de cómo alguien te entra sin que te des cuenta, de a poco, hasta que un día volteas y ya está ahí. Eso hiciste tú. No me avisaste, simplemente pasó. Y ya no me molesta para nada — al contrario.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/6GM5l4aJ9aOhGStxODvNBm?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Natanael Cano ft. Junior H</div>
+          <div class="rec-dedication">Esta te la dedico porque habla de que hay personas que simplemente son, y ya. Sin necesitar explicación. Tú eres una de esas para mí. No tengo un argumento lógico para lo que siento, solo sé que desde que te conocí no he dejado de pensarte.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/2hu7EGMBif7scYUT4zu5wG?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Natanael Cano</div>
+          <div class="rec-dedication">Esta porque quiero algo real contigo, no algo a medias ni algo que dure tantito y ya. Cuando te busqué desde el principio fue con eso en mente, y no ha cambiado. Sigo aquí, sigo pensándote, y sigo queriendo algo de verdad.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/3iOUnnSLLH2TywmyYBZwC8?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Peso Pluma ft. Gabito Ballesteros y Junior H</div>
+          <div class="rec-dedication">Esta va porque hay alguien que te tiene en la cabeza y no puede hacer nada al respecto. Ese alguien soy yo, por si no había quedado claro. Ya lo intenté y no funciona — mejor lo acepto y ya.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/3RA55zrRkyPK8Fd86hrMy8?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Peso Pluma ft. Junior H</div>
+          <div class="rec-dedication">Esta te la pongo porque debajo de lo bonita que suena, dice algo muy honesto: que uno piensa en alguien aunque no debería, que no lo puede controlar. Pues eso. Hoy es tu cumpleaños y de todas formas estoy aquí, armándote esto. Sin poder evitarlo.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/5x5kN5Qx1zptllSZV42jfh?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Anuel AA</div>
+          <div class="rec-dedication">Esta la puse porque habla de necesitar a alguien sin haberlo planeado, de darte cuenta un día que esa persona ya es parte de cómo funciona tu rutina. Contigo me pasó eso sin que me diera cuenta. Ya sos parte de mi día, aunque todavía no sepas exactamente cuánto.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/3jbT1Y5MoPwEIpZndDDwVq?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Tainy, Anuel AA y Ozuna</div>
+          <div class="rec-dedication">Esta porque resume bien lo que pasa cuando alguien te gusta de verdad: que te volvés adicto sin querer. Ya no imaginás bien los días sin esa persona. Eso me está pasando con vos, y si te soy honesto, ya ni le busco cura.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rec-section-title">Y algo en inglés, porque el amor no tiene idioma</div>
+    <div class="rec-list">
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/1nJZ3E7fT60e8koEhNBcd4?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Justin Bieber</div>
+          <div class="rec-dedication">Esta dice algo que me parece muy fácil de entender: si no sos vos, no es nadie. Uno puede estar rodeado de gente y aun así saber exactamente quién quiere que esté. Para mí esa persona sos vos. Ya lo sabés, pero igual quería ponerlo aquí.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/4umIPjkehX1r7uhmGvXiSV?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Justin Bieber ft. Quavo</div>
+          <div class="rec-dedication">Esta la elegí porque habla de tener buenas intenciones, de verdad querer el bien de alguien. No quiero impresionarte con palabras bonitas — quiero tratarte bien, de a de veras. Eso es lo que tengo en mente desde que te conocí.</div>
+        </div>
+      </div>
+
+      <div class="rec-item">
+        <iframe style="border-radius:10px 10px 0 0" src="https://open.spotify.com/embed/track/0pwYLVXVknPSGUQb39cePC?utm_source=generator" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="rec-msg">
+          <div class="rec-artist">Justin Bieber ft. Big Sean</div>
+          <div class="rec-dedication">Y esta para cerrar, porque dice algo muy sencillo y muy honesto: que mientras me quieras, con eso me alcanza. No pido garantías, no pido que lo tengas todo claro ahorita. Solo que si algún día decidís darme chance, yo voy a estar. Sin dudar.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const loveEmojis = ['❤️','💖','💕','🌹','💘','✨','💌','🥰','💗','💞','🌸','💝','🫶','🎀','💓'];
+  function spawnEmojis() {
+    const canvas = document.getElementById('canvas');
+    const count = 18 + Math.floor(Math.random() * 10);
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const el = document.createElement('span');
+        el.className = 'float-emoji';
+        el.textContent = loveEmojis[Math.floor(Math.random() * loveEmojis.length)];
+        el.style.left = (5 + Math.random() * 90) + 'vw';
+        el.style.top  = (60 + Math.random() * 35) + 'vh';
+        el.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+        el.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+        canvas.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }, i * 60);
+    }
+  }
+</script>
+</body>
+</html>
